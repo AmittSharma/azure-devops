@@ -1,0 +1,33 @@
+# azure-pipelines.yml
+
+trigger:
+  branches:
+    include:
+    - develop
+    - release/*
+    - hotfix/*
+    - master
+
+pr:
+  branches:
+    include:
+    - develop # Run this pipeline for PRs targeting 'develop'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'verify' # 'verify' runs all phases up to and including tests
+    options: '-B' # Runs in batch mode
+    publishJUnitTestResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17' # Match your project's Java version
+    mavenVersionOption: 'Default'
+    mavenOptions: '-Xmx3072m'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
