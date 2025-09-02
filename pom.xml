@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.techitt</groupId>
 	<artifactId>azureproject</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+
 	<name>Azure Project</name>
 	<description>Learning project based on Azure Devops</description>
 	<url/>
@@ -28,7 +28,12 @@
 	</scm>
 	<properties>
 		<java.version>21</java.version>
-	</properties>
+        <jgitver.strategy>CONFIGURABLE</jgitver.strategy>
+        <jgitver.mavenLike>true</jgitver.mavenLike>
+        <jgitver.releases>master</jgitver.releases>
+        <jgitver.branch.default.version>${jgitver.branch_name}-SNAPSHOT</jgitver.branch.default.version>
+        <jgitver.branch.pattern.master.version>NON_QUALIFIED_VERSION</jgitver.branch.pattern.master.version>
+    </properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
